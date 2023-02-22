@@ -1,7 +1,5 @@
 package Model;
 
 class Main {
-    public static void main(String[] args) {
-            System.out.println("New World!");
-        }
+  public static void main(String[] args) { System.out.println("New World!"); }
 }
