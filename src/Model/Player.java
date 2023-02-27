@@ -3,48 +3,24 @@ package Model;
 import java.util.Vector;
 
 public class Player {
-    int compost;
-    int soil;
-    Vector <Card> hand;
-    Vector<Vector <Card>> playerIsland;
+  int compost;
+  int soil;
+  Vector<Card> hand;
+  Vector<Vector<Card>> playerIsland;
 
-    void activePlanting()
-    {
+  void activePlanting() {}
 
-    }
+  void inactivePlanting() {}
 
-    void inactivePlanting()
-    {
+  void activeComposting() {}
 
-    }
+  void inactiveComposting() {}
 
-    void activeComposting()
-    {
+  void activeWatering() {}
 
-    }
+  void inactiveWatering() {}
 
-    void inactiveComposting()
-    {
+  void activeGrowing() {}
 
-    }
-
-    void activeWatering()
-    {
-
-    }
-    
-    void inactiveWatering()
-    {
-
-    }
-
-    void activeGrowing()
-    {
-
-    }
-
-    void inactiveGrowing()
-    {
-
-    }
+  void inactiveGrowing() {}
 }
