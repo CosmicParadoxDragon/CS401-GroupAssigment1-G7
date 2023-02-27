@@ -2,10 +2,10 @@ package Model;
 
 public class EcosystemCard extends Card
 {
-    EcosystemCard()
+    EcosystemCard(String name)
     {
-
+        super(name);
     }   
     
-    String
+    
 }
