@@ -5,6 +5,8 @@ import java.util.Vector;
 import Model.Cards.Card;
 
 public class Player {
+    String playerName = "John Smith";
+    
     int compost;
     int soil;
     int gainedSoil = 0;
@@ -15,13 +17,28 @@ public class Player {
     Vector <Card> hand;
     Vector<Vector <Card>> playerTabulue;
 
-
-    Player(Card islandCard, Card climateCard)
+    public String getName()
     {
-        m_islandCard = islandCard;
-        m_climateCard = climateCard;
+        return playerName;
     }
 
+    Player()
+    {
+        hand = new Vector<Card>();
+        playerTabulue = new Vector<Vector <Card>>();
+    }
+    Vector <Card> getHand()
+    {
+        return hand;
+    }
+    void setIsland(Card islandCard)
+    {
+        m_islandCard = islandCard;
+    }
+    void setClimate(Card cliamteCard)
+    {
+        m_climateCard = cliamteCard;
+    }
     void activePlanting()
     {
 

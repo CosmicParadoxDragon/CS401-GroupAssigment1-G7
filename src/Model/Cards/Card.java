@@ -5,9 +5,10 @@ public class Card {
     int m_victoryPoints;
     Card() {  }
     
-    Card(String name, int victoryPoints)
+    Card(String name, String abilityLine, int victoryPoints)
     {
         m_name = name;
+        m_abilities = abilityLine;
         m_victoryPoints = victoryPoints;
     }
 
@@ -38,6 +39,7 @@ public class Card {
          * d[x] = draw x cards
          * g[x] = add x growth
          * s[x] = add x sprouts
+         * i[x] = gain x soil
          * h = herb
          * r = row, o = orthoganal
          * E[x] = end game ability

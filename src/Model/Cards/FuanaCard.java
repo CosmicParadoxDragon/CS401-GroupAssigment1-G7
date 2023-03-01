@@ -6,9 +6,9 @@ import java.util.Vector;
 public class FuanaCard extends Card
 {
     Vector <Player> achievedPlayers;
-    public FuanaCard(String name, String victoryPoints)
+    public FuanaCard(String name, String abilityLine)
     {
-        super(name, victoryPoints);
+        super(name, abilityLine, 0);
     }
 
     /**

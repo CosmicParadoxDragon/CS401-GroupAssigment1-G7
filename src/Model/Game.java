@@ -2,26 +2,68 @@ package Model;
 
 import java.util.Vector;
 
-import Model.Cards.Card;
+import Model.Cards.*;
 
 class Game {
 
+    int m_numberOfPlayers;
     Vector <Card> FuanaCards;
     Vector<Integer> Scores;
+    Vector <Player> players;
     Deck EarthDeck;
-    
-    Game()
-    {
+    Deck IslandDeck;
+    Deck ClimateDeck;
+    Deck FuanaDeck;
+    Game(int numberOfPlayers)
+    {   
+        EarthDeck = new Deck();
+        IslandDeck = new Deck();
+        ClimateDeck = new Deck();
+        FuanaDeck = new Deck();
+        FuanaCards = new Vector<Card>();
+        Scores = new Vector<Integer>();
+        players = new Vector<Player>();
+        m_numberOfPlayers = numberOfPlayers;
         // Game Setup Phase
-        // Dealt an island
-        // placeIsland()
-
-        // Dealt a Climate
-        // placeClimate()
+        SetupPhase();
+        
 
 
     }
 
+    void SetupPhase()
+    {
+        EarthDeck.fillEarthDeck();
+        ClimateDeck.fillClimateDeck();
+        FuanaDeck.fillFuanaDeck();
+        IslandDeck.fillIslandDeck();
+        for (int i = 0; i < m_numberOfPlayers; i++)
+        {
+            players.add(new Player());
+        }
+
+        for (int j = 0; j<4; j++)
+        {
+            FuanaCards.add(FuanaDeck.dealCard());
+        }
+        // 1 Player game is standard expect everything to break
+        for (int i = 0; i < m_numberOfPlayers; i++)
+        {
+            players.get(i).setIsland(IslandDeck.dealCard());
+            players.get(i).setClimate(ClimateDeck.dealCard());
+            // players.get(i).setEcosystem(EcosystemDeck.dealCard()); if we ever get here
+        }
+    }
+
+    Vector<Card> getFuanaCards()
+    {
+        return FuanaCards;
+    }
+
+    Vector<Player> getPlayers()
+    {
+        return players;
+    }
     //! Assumeing Solo Game
 
     // int numberOfPlayers;
