@@ -35,7 +35,8 @@ class Game {
         activePlayer = players.get(0);
 
     }
-
+    
+    //! Assumeing Solo Game
     private void SetupPhase()
     {
         EarthDeck.fillEarthDeck();
@@ -44,7 +45,7 @@ class Game {
         IslandDeck.fillIslandDeck();
         for (int i = 0; i < m_numberOfPlayers; i++)
         {
-            players.add(new Player());
+            players.add(new Player(this));
         }
 
         for (int j = 0; j<4; j++)
@@ -60,6 +61,15 @@ class Game {
         }
     }
 
+    void mainTurnLoop()
+    {
+        for (Player currentPlayer : players)
+        {
+            currentPlayer.takeTurn();
+            // currentPlayer.getTableau().checkFull(); // <- Need this for the end of the game
+        }
+    }
+
     Vector<Card> getFuanaCards()
     {
         return FuanaCards;
@@ -69,15 +79,10 @@ class Game {
     {
         return players;
     }
-    //! Assumeing Solo Game
 
-    // int numberOfPlayers;
-    // Vector <Player> players;
-    // Player firstPlayer; 
-    
     void planting()
     {
-        // Player Action
+        // Active Player Action
         // Plant 2 Cards
         // Draw 4 Discard 3 (not compost)
         
