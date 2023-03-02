@@ -54,3 +54,7 @@ Game Setup
 
 ## Members
 Sohrab Kazak
+
+Truong Dinh
+
+Jed Faalam
