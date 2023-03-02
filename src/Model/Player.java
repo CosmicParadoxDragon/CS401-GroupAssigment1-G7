@@ -1,80 +1,42 @@
 package Model;
 
+import Model.Cards.Card;
 import java.util.Vector;
 
-import Model.Cards.Card;
-
 public class Player {
-    String playerName = "John Smith";
-    
-    int soil;
-    int gainedSoil = 0;
-    int gainedCards = 0;
+  String playerName = "John Smith";
 
-    Card m_islandCard, m_climateCard;
-    Vector <Card> hand;
-    Vector <Card> compostPile;
-    Vector<Vector <Card>> playerTabulue;
+  int soil;
+  int gainedSoil = 0;
+  int gainedCards = 0;
 
-    public String getName()
-    {
-        return playerName;
-    }
-    Player()
-    {
-        hand = new Vector<Card>();
-        compostPile = new Vector<Card>();
-        playerTabulue = new Vector<Vector <Card>>();
-    }
-    public Vector <Card> getHand()
-    {
-        return hand;
-    }
-    void setIsland(Card islandCard)
-    {
-        m_islandCard = islandCard;
-    }
-    void setClimate(Card cliamteCard)
-    {
-        m_climateCard = cliamteCard;
-    }
-    void activePlanting()
-    {
+  Card m_islandCard, m_climateCard;
+  Vector<Card> hand;
+  Vector<Card> compostPile;
+  Vector<Vector<Card>> playerTabulue;
 
-    }
+  public String getName() { return playerName; }
+  Player() {
+    hand = new Vector<Card>();
+    compostPile = new Vector<Card>();
+    playerTabulue = new Vector<Vector<Card>>();
+  }
+  public Vector<Card> getHand() { return hand; }
+  void setIsland(Card islandCard) { m_islandCard = islandCard; }
+  void setClimate(Card cliamteCard) { m_climateCard = cliamteCard; }
+  void activePlanting() {}
 
-    void inactivePlanting()
-    {
+  void inactivePlanting() {}
 
-    }
+  void activeComposting() {}
 
-    void activeComposting()
-    {
+  void inactiveComposting() {}
 
-    }
+  void activeWatering() {}
 
-    void inactiveComposting()
-    {
+  void inactiveWatering() {}
 
-    }
+  void activeGrowing() {}
 
-    void activeWatering()
-    {
-
-    }
-    
-    void inactiveWatering()
-    {
-
-    }
-
-    void activeGrowing()
-    {
-
-    }
-
-    void inactiveGrowing()
-    {
-
-    }
+  void inactiveGrowing() {}
 }
