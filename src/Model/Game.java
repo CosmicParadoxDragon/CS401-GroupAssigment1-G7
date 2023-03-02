@@ -14,12 +14,17 @@ class Game {
     Deck IslandDeck;
     Deck ClimateDeck;
     Deck FuanaDeck;
+    Deck discardPile;
+
+    Player activePlayer;
+
     Game(int numberOfPlayers)
     {   
         EarthDeck = new Deck();
         IslandDeck = new Deck();
         ClimateDeck = new Deck();
         FuanaDeck = new Deck();
+        discardPile = new Deck();
         FuanaCards = new Vector<Card>();
         Scores = new Vector<Integer>();
         players = new Vector<Player>();
@@ -27,11 +32,11 @@ class Game {
         // Game Setup Phase
         SetupPhase();
         
-
+        activePlayer = players.get(0);
 
     }
 
-    void SetupPhase()
+    private void SetupPhase()
     {
         EarthDeck.fillEarthDeck();
         ClimateDeck.fillClimateDeck();
@@ -49,9 +54,9 @@ class Game {
         // 1 Player game is standard expect everything to break
         for (int i = 0; i < m_numberOfPlayers; i++)
         {
-            players.get(i).setIsland(IslandDeck.dealCard());
-            players.get(i).setClimate(ClimateDeck.dealCard());
-            // players.get(i).setEcosystem(EcosystemDeck.dealCard()); if we ever get here
+            players.get(i).getHand().add(IslandDeck.dealCard());
+            players.get(i).getHand().add(ClimateDeck.dealCard());
+            // players.get(i).getHand().add(EcosystemDeck.dealCard()); // if we ever get here
         }
     }
 

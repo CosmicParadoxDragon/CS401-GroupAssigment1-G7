@@ -7,27 +7,26 @@ import Model.Cards.Card;
 public class Player {
     String playerName = "John Smith";
     
-    int compost;
     int soil;
     int gainedSoil = 0;
     int gainedCards = 0;
 
     Card m_islandCard, m_climateCard;
-
     Vector <Card> hand;
+    Vector <Card> compostPile;
     Vector<Vector <Card>> playerTabulue;
 
     public String getName()
     {
         return playerName;
     }
-
     Player()
     {
         hand = new Vector<Card>();
+        compostPile = new Vector<Card>();
         playerTabulue = new Vector<Vector <Card>>();
     }
-    Vector <Card> getHand()
+    public Vector <Card> getHand()
     {
         return hand;
     }
