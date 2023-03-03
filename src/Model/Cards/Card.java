@@ -26,7 +26,7 @@ public class Card {
         m_text = text;
     }
 
-    public void parseAbilities(String abilityEncoding)
+    void parseAbilities(String abilityEncoding)
     {
         // where the ability string will be passed to
         // needs color check -> defining actions -> resolution
