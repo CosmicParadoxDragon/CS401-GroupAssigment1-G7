@@ -8,7 +8,7 @@ class Game {
 
     int m_numberOfPlayers;
     Vector <Card> FuanaCards;
-    Vector<Integer> Scores;
+    Vector <Integer> Scores;
     Vector <Player> players;
     Deck EarthDeck;
     Deck IslandDeck;
@@ -39,10 +39,16 @@ class Game {
     //! Assumeing Solo Game
     private void SetupPhase()
     {
-        EarthDeck.fillEarthDeck();
-        ClimateDeck.fillClimateDeck();
-        FuanaDeck.fillFuanaDeck();
-        IslandDeck.fillIslandDeck();
+        try{
+            EarthDeck.fillEarthDeck();
+            ClimateDeck.fillClimateDeck();
+            FuanaDeck.fillFuanaDeck();
+            IslandDeck.fillIslandDeck();
+        }
+        catch (Exception e)
+        {
+            System.out.println(e.toString());
+        }
         for (int i = 0; i < m_numberOfPlayers; i++)
         {
             players.add(new Player(this));

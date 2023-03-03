@@ -2,6 +2,9 @@ package Model;
 
 // import java.util.Random;
 import java.util.Vector;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.util.Scanner;
 
 import Model.Cards.*;
 
@@ -33,30 +36,111 @@ public class Deck {
         return deckList;
     }
 
-    void fillEarthDeck()
+    void fillEarthDeck() throws FileNotFoundException
     {
-        deckList.add(new TerrainCard("Prairie", "Sunny|Rocky|Cold", "!G|d1|E3|h", 3, 2));
-        deckList.add(new TerrainCard("Beach", "All", "!E|4|eoa|", 7, 9));
-        deckList.add(new EventCard("Tsunami", "!Y|g-5|d7", -4));
-        deckList.add(new FloraCard("Japanese Maple", "Tree", "Rocky|Cold", "!Y|g1", 3, 4, 3, 4));
-        deckList.add(new FloraCard("American Sycamore", "Tree", "All", "!Y|g1|Rg-1s2", 3, 4, 3, 1));
-    }
+        File file;
+        Scanner deck_file;
+
+        try {
+            file = new File("src/Model/Cards/decklists/terrain_cards.csv");
+            deck_file = new Scanner(file);
+            deck_file.nextLine();
+            deck_file.nextLine();
+            deck_file.nextLine();
+            String line = deck_file.nextLine();
+            String []list = line.split(",");
+
+            String name = list[0],
+            habitat     = list[1],
+            abilities   = list[2];
+            int cost    = Integer.parseInt(list[3]),
+            vp          = Integer.parseInt(list[4]);
+            deckList.add(new TerrainCard(name, habitat, abilities, cost, vp));
+            deck_file.close();
+        }
+        catch(Exception e) {
+            System.out.println(e.toString());
+        }
+        // deckList.add(new TerrainCard("Prairie", "Sunny|Rocky|Cold", "Green:+1 Cards 3 Victory Points per Herb in this Row", 4, 2));
+    }   
 
     void fillClimateDeck()
     {
-        deckList.add(new ClimateCard("Arid", "Sunny|Rocky", "!Rd2|", 1));
+        File file;
+        Scanner deck_file;
+
+        try {
+            file = new File("src/Model/Cards/decklists/climate_cards.csv");
+            deck_file = new Scanner(file);
+            deck_file.nextLine();
+            deck_file.nextLine();
+            deck_file.nextLine();
+            String line = deck_file.nextLine();
+            String []list = line.split(",");
+
+            String name = list[0],
+            habitat     = list[1],
+            abilities   = list[3];
+            int vp      = Integer.parseInt(list[2]);
+
+            deckList.add(new ClimateCard(name, habitat, vp, abilities));
+            deck_file.close();
+        }
+        catch(Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
     void fillFuanaDeck()
     {
-        // Score this card Fuana ability  4 flora with >=3 growth (truncks)
-        deckList.add(new FuanaCard("Bald Eagle", "!F4f/3g"));
+        // Score this card Fuana ability  4 flora with >= 3 Trunks
+        File file;
+        Scanner deck_file;
+
+        try {
+            file = new File("src/Model/Cards/decklists/fuana_cards.csv");
+            deck_file = new Scanner(file);
+            deck_file.nextLine();
+            deck_file.nextLine();
+            deck_file.nextLine();
+            String line = deck_file.nextLine();
+            String []list = line.split(",");
+
+            String name = list[0],
+            objective   = list[1];
+            deckList.add(new FuanaCard(name, objective));
+            deck_file.close();
+        }
+        catch(Exception e) {
+            System.out.println(e.toString());
+        }
     }
 
     void fillIslandDeck()
     {
         // Ability line reads Black (on-play effect) draw 5, compost 2, and gain 7 soil.  Second ability: Green activated gain 2 sprouts per rocky
         // habitat flora planted this turn
-        deckList.add(new IslandCard("Hawai'i", "Rocky|Cold", "!Bd5c2i7!Gs2/rp", 4));
+        File file;
+        Scanner deck_file;
+
+        try {
+            file = new File("src/Model/Cards/decklists/island_cards.csv");
+            deck_file = new Scanner(file);
+            deck_file.nextLine();
+            deck_file.nextLine();
+            deck_file.nextLine();
+            String line = deck_file.nextLine();
+            String []list = line.split(",");
+
+            String name = list[0],
+            habitat     = list[1],
+            abilities   = list[3];
+            int vp      = Integer.parseInt(list[2]);
+            deckList.add(new IslandCard(name, habitat, vp, abilities));
+            deck_file.close();
+        }
+        catch(Exception e) {
+            System.out.println(e.toString());
+        }
     }
 }
