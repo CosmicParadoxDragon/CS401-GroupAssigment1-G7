@@ -14,6 +14,8 @@ public class Player {
     Card m_islandCard, m_climateCard;
     Vector <Card> hand;
     Vector <Card> compostPile;
+    Vector <Card> discardPile;
+    Vector <Card> eventStack;
     Vector<Vector <Card>> playerTabulue;
     Game m_game;
     public String getName()
@@ -86,15 +88,20 @@ public class Player {
     {
         for ( int i = 0; i < numberToDiscard; i++)
         {
-            
+            Card someCard;
+            someCard = getHand().get(0); // TODO way to select a card from the hand
+            hand.remove(someCard);
         }
     }
     void inactivePlanting()
     {
         // Gaia Action
         // discarded cards become compost
-
-
+        for (int i = 0; i < 3; i ++)
+        {
+            compostPile.add(discardPile.lastElement());
+            compostPile.remove(discardPile.size());
+        }
     }
 
     void activeComposting()

@@ -4,7 +4,7 @@ public class FloraCard extends EarthCard
 {
     String m_subtype, m_habitat;
     int m_sprouts, m_growth;
-    int m_sproutsMax, m_growthMax;
+    int m_sproutsMax, m_growthMax, canopyScore;
     
     /**
      * Constructor for Flora Cards

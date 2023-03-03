@@ -27,9 +27,13 @@ Game Setup
 - Cliamte
     > The this is a card slot for one card assignment made before turn 1
 - Enviroment
-    > A wincondition card that maybe immplemented.
+    > A wincondition card that maybe implemented.
   
 ### Cards
+- Earth Cards
+  - Flora Cards
+  - Event Cards
+  - Terrain Cards
 - Fuana Cards
   > These are pre-game cards that determine the victory conditions for the player
 - Island Card
@@ -46,7 +50,7 @@ Game Setup
   - Ongoing/Win Condition
     > This is a temporary term as a placeholder for abilities that are checked on an ongoing basis, primarily win condition abiliites that score you points. There will be a toggle on the card to stop the check once scored.
   - Triggered
-    > These abilities are color coded and active after that action is taken in game.  Abilities with mutliple colors exist.
+    > These abilities are color coded and active after that action is taken in game.  Abilities with mutliple colors exist.  Abilities are activated at the end on each players the action on their turn.
   - Encoding Abilities
     > Need some way to encode abilities into patterns of characters so that we can use alphanumeric strings to build cards instead of hard coding them.
   - Need a csv file and accessors for the cards in normalized format
