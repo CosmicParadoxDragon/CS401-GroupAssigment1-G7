@@ -3,7 +3,7 @@ package Model;
 import java.util.Vector;
 
 import Model.Cards.*;
-
+import Model.Board.Tableau;
 class Game {
 
     int m_numberOfPlayers;
@@ -67,15 +67,34 @@ class Game {
             // players.get(i).getHand().add(EcosystemDeck.dealCard()); // if we ever get here
         }
     }
-
+    boolean assertPlayerTurn() {
+        boolean takeSameTurn;
+        for (int i = 0; i < m_numberOfPlayers - 1; i++) {
+            if (players.elementAt(i) == players.elementAt(i+1)) {
+                takeSameTurn = true;
+            }
+        }
+        return false;
+    }
     void mainTurnLoop()
     {
-        for (Player currentPlayer : players)
-        {
-            System.out.printf("Now it is player %s turn. \n", currentPlayer.getName());
-            currentPlayer.takeTurn();
+        int no_of_turn = 0;
+        boolean TableauDeckisFilled = false;
+        // End game condition
+        // If a player tableau is filled and everyone has taken the same no_of_turn
+        // The game is completed
+        while (!TableauDeckisFilled) {
+            for (Player currentPlayer : players) {
+                // Checking if the tableau is filled
+                if (currentPlayer.getTableau().isBoardFilled()) {
+                    TableauDeckisFilled = true;
+                }
+                System.out.printf("Now it is player %s turn. \n", currentPlayer.getName());
+                currentPlayer.takeTurn();
 
-            // currentPlayer.getTableau().checkFull(); // <- Need this for the end of the game
+                // Can calculate the player point in here
+            }
+            no_of_turn = 0;
         }
     }
 

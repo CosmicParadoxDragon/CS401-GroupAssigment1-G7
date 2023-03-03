@@ -1,6 +1,7 @@
 package Model;
 
 import java.util.Scanner;
+import Model.Board.Tableau;
 import java.util.Vector;
 import java.util.Iterator;
 import Model.Cards.Card;
@@ -99,12 +100,12 @@ public class Player {
         // Chose an Earth card index in your hand to place it onto the tableau
         Card selected_card = hand.get(scanner.nextInt());
 
-        // Get the position for card planting and plcae it onto your tableau
+        // Get the position for card planting and place it onto your tableau
         {
             System.out.print("Enter the position of the card in the tableau: ");
             int horizontal_pos = scanner.nextInt();
             int vertical_pos = scanner.nextInt();
-            m_tableau.plant(selected_card,horizontal_pos, vertical_pos);
+            m_tableau.setCard(horizontal_pos, vertical_pos, selected_card);
         }
 
 
@@ -118,8 +119,8 @@ public class Player {
     void active_plating_ability() {
         for (int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
-                // Missing color field
-                m_tableau.getCardFromTableau(i,j).getM_color();
+                // Fetching color from abilities
+//                m_tableau.getCardFromTableau(i,j).getM_abilities().contains("GREEN");
             }
         }
     }
@@ -166,5 +167,9 @@ public class Player {
     void inactiveGrowing()
     {
 
+    }
+
+    Tableau getTableau () {
+        return m_tableau;
     }
 }

@@ -1,9 +1,10 @@
 package Model.Cards;
+import java.util.Iterator;
 import java.util.Vector;
 
 
 public class Card {
-    String m_name, m_abilities, m_text;
+    String m_name, m_abilities, m_text, color;
     int m_victoryPoints;
     Card() {  }
     // Card initialization
@@ -27,13 +28,26 @@ public class Card {
         m_text = text;
     }
 
+//    String getColor() {
+//        String Colors;
+//        switch (m_abilities) {
+//            case m_abilities.contains("yellow"):
+//        }
+//    }
     public void parseAbilities(String abilityEncoding)
     {
         // where the ability string will be passed to
         // needs color check -> defining actions -> resolution
 
-
-
+        for (int i = 0; i < abilityEncoding.length(); i++) {
+            if (i == 0) {
+                switch (abilityEncoding.charAt(i)) {
+                    case 'Y': color = "Yellow";
+                    case 'B': color = "Black";
+                }
+            }
+        }
+//        if (abilityEncoding)
         /**
          * A very basic and honestly needlessly complex encoding standard for abilities
          * 
