@@ -1,136 +1,100 @@
 package Model;
 
+import Model.Cards.Card;
 import java.util.Vector;
 
-import Model.Cards.Card;
-
 public class Player {
-    String playerName = "John Smith";
-    
-    int soil;
-    int gainedSoil = 0;
-    int gainedCards = 0;
+  String playerName = "John Smith";
 
-    Card m_islandCard, m_climateCard;
-    Vector <Card> hand;
-    Vector <Card> compostPile;
-    Vector <Card> discardPile;
-    Vector <Card> eventStack;
-    Vector<Vector <Card>> playerTabulue;
-    Game m_game;
-    public String getName()
-    {
-        return playerName;
-    }
-    Player(Game currentGame)
-    {
-        hand = new Vector<Card>();
-        compostPile = new Vector<Card>();
-        m_game = currentGame;
+  int soil;
+  int gainedSoil = 0;
+  int gainedCards = 0;
 
-        playerTabulue = new Vector<Vector <Card>>();
-    }
-    public Vector <Card> getHand()
-    {
-        return hand;
-    }
-    void setIsland(Card islandCard)
-    {
-        m_islandCard = islandCard;
-    }
-    void setClimate(Card cliamteCard)
-    {
-        m_climateCard = cliamteCard;
-    }
-    
-    String takeTurn()
-    {
-        String actionChosen = "";
+  Card m_islandCard, m_climateCard;
+  Vector<Card> hand;
+  Vector<Card> compostPile;
+  Vector<Card> discardPile;
+  Vector<Card> eventStack;
+  Vector<Vector<Card>> playerTabulue;
+  Game m_game;
+  public String getName() { return playerName; }
+  Player(Game currentGame) {
+    hand = new Vector<Card>();
+    compostPile = new Vector<Card>();
+    m_game = currentGame;
 
-        //Choose an action
-        // Switch to correct branch
-        actionChosen = selectAction();
+    playerTabulue = new Vector<Vector<Card>>();
+  }
+  public Vector<Card> getHand() { return hand; }
+  void setIsland(Card islandCard) { m_islandCard = islandCard; }
+  void setClimate(Card cliamteCard) { m_climateCard = cliamteCard; }
 
-        switch (actionChosen)
-        {
-            case "planting":
-                activePlanting(); break;
-            case "composting":
-                activeComposting(); break;
-            case "growing":
-                activeGrowing(); break;
-            case "watering":
-                activeWatering(); break;
-        }
+  String takeTurn() {
+    String actionChosen = "";
 
-        return actionChosen;
-    }
-    
-    String selectAction()
-    {
-        String action = "planting";
-        return action;
+    // Choose an action
+    //  Switch to correct branch
+    actionChosen = selectAction();
+
+    switch (actionChosen) {
+    case "planting":
+      activePlanting();
+      break;
+    case "composting":
+      activeComposting();
+      break;
+    case "growing":
+      activeGrowing();
+      break;
+    case "watering":
+      activeWatering();
+      break;
     }
 
-    void activePlanting()
-    {
-        // Active Player Action
-        // Plant 2 Cards
-        // Draw 4 Discard 3 (not compost)
+    return actionChosen;
+  }
 
-        // tableau.plant(Card, Card);
-        for (int i = 0; i < 4; i++)
-            hand.add(m_game.EarthDeck.dealCard());
+  String selectAction() {
+    String action = "planting";
+    return action;
+  }
 
-        discard(3);
+  void activePlanting() {
+    // Active Player Action
+    // Plant 2 Cards
+    // Draw 4 Discard 3 (not compost)
+
+    // tableau.plant(Card, Card);
+    for (int i = 0; i < 4; i++)
+      hand.add(m_game.EarthDeck.dealCard());
+
+    discard(3);
+  }
+  void discard(int numberToDiscard) {
+    for (int i = 0; i < numberToDiscard; i++) {
+      Card someCard;
+      someCard = getHand().get(0); // TODO way to select a card from the hand
+      hand.remove(someCard);
     }
-    void discard(int numberToDiscard)
-    {
-        for ( int i = 0; i < numberToDiscard; i++)
-        {
-            Card someCard;
-            someCard = getHand().get(0); // TODO way to select a card from the hand
-            hand.remove(someCard);
-        }
+  }
+  void inactivePlanting() {
+    // Gaia Action
+    // discarded cards become compost
+    for (int i = 0; i < 3; i++) {
+      compostPile.add(discardPile.lastElement());
+      compostPile.remove(discardPile.size());
     }
-    void inactivePlanting()
-    {
-        // Gaia Action
-        // discarded cards become compost
-        for (int i = 0; i < 3; i ++)
-        {
-            compostPile.add(discardPile.lastElement());
-            compostPile.remove(discardPile.size());
-        }
-    }
+  }
 
-    void activeComposting()
-    {
+  void activeComposting() {}
 
-    }
+  void inactiveComposting() {}
 
-    void inactiveComposting()
-    {
+  void activeWatering() {}
 
-    }
+  void inactiveWatering() {}
 
-    void activeWatering()
-    {
+  void activeGrowing() {}
 
-    }
-    
-    void inactiveWatering()
-    {
-
-    }
-
-    void activeGrowing()
-    {
-
-    }
-
-    void inactiveGrowing()
-    {
-
-    }
+  void inactiveGrowing() {}
 }
