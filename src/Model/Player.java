@@ -3,7 +3,6 @@ package Model;
 import java.util.Scanner;
 import Model.Board.Tableau;
 import java.util.Vector;
-import java.util.Iterator;
 import Model.Cards.Card;
 
 public class Player {
@@ -68,7 +67,11 @@ public class Player {
     String selectAction()
     {
          Scanner scanner = new Scanner(System.in);
-         System.out.println("Enter number from 1 to 4 for each action");
+         System.out.println("Enter number from 1 to 4 for each action " +
+                 "\n 1: Planting" +
+                 "\n 2: Composting" +
+                 "\n 3: Growing" +
+                 "\n 4: Watering");
          int selection = scanner.nextInt();
         switch (selection) {
             case 1 -> {
@@ -112,7 +115,7 @@ public class Player {
         // Draw 4 Discard 3 (not compost)
         for (int i = 0; i < 4; i++)
             hand.add(m_game.EarthDeck.dealCard());
-
+        // Compost 3 cards
         discard(3);
     }
 
@@ -120,7 +123,8 @@ public class Player {
         for (int i = 0; i < 4; i++) {
             for(int j = 0; j < 4; j++) {
                 // Fetching color from abilities
-//                m_tableau.getCardFromTableau(i,j).getM_abilities().contains("GREEN");
+                //if(m_tableau.getCardFromTableau(i,j).getM_abilities().contains("GREEN"))
+                //  activate the ability
             }
         }
     }
