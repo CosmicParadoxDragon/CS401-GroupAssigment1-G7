@@ -1,12 +1,6 @@
 // This contains a running instance of the game.
-package Model; 
+package Model;
 
 class Main {
-    public static void main(String[] args) {
-        
-        
-        
-        Game currentGame = new Game(1);
-        
-        }
+  public static void main(String[] args) { Game currentGame = new Game(1); }
 }
