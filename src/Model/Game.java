@@ -31,12 +31,12 @@ class Game {
         m_numberOfPlayers = numberOfPlayers;
         // Game Setup Phase
         SetupPhase();
-        
+        mainTurnLoop();
         activePlayer = players.get(0);
 
     }
     
-    //! Assumeing Solo Game
+    //! Assuming Solo Game
     private void SetupPhase()
     {
         EarthDeck.fillEarthDeck();
@@ -51,12 +51,19 @@ class Game {
         for (int j = 0; j<4; j++)
         {
             FuanaCards.add(FuanaDeck.dealCard());
+
         }
         // 1 Player game is standard expect everything to break
         for (int i = 0; i < m_numberOfPlayers; i++)
         {
-            players.get(i).getHand().add(IslandDeck.dealCard());
+            Card island = IslandDeck.dealCard();
+            players.get(i).getHand().add(island);
+            // Activate the island immediate ability with black background
+            // E.g: island.parseAbility("black");
+            island.parseAbilities(island.getM_abilities()) ;
+            // This should work if parseAbility is complete
             players.get(i).getHand().add(ClimateDeck.dealCard());
+            //players.get(i).getHand().add(EarthDeck.dealCard());
             // players.get(i).getHand().add(EcosystemDeck.dealCard()); // if we ever get here
         }
     }
@@ -65,7 +72,9 @@ class Game {
     {
         for (Player currentPlayer : players)
         {
+            System.out.printf("Now it is player %s turn. \n", currentPlayer.getName());
             currentPlayer.takeTurn();
+
             // currentPlayer.getTableau().checkFull(); // <- Need this for the end of the game
         }
     }

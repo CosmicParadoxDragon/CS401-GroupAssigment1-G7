@@ -1,10 +1,12 @@
 package Model.Cards;
+import java.util.Vector;
+
 
 public class Card {
     String m_name, m_abilities, m_text;
     int m_victoryPoints;
     Card() {  }
-    
+    // Card initialization
     Card(String name, String abilityLine, int victoryPoints)
     {
         m_name = name;
@@ -12,6 +14,7 @@ public class Card {
         m_victoryPoints = victoryPoints;
     }
 
+    //
     Card(String name, String abilityLine)
     {
         m_name = name;
@@ -24,10 +27,12 @@ public class Card {
         m_text = text;
     }
 
-    void parseAbilities(String abilityEncoding)
+    public void parseAbilities(String abilityEncoding)
     {
         // where the ability string will be passed to
         // needs color check -> defining actions -> resolution
+
+
 
         /**
          * A very basic and honestly needlessly complex encoding standard for abilities
@@ -45,6 +50,7 @@ public class Card {
          * E[x] = end game ability
          * Format is : !{solor/End}{ability code}
          * ex:Y|g-5|d7 means Yellow ability then remove 5 growth and then draw 7
+         * ex: B|d10|d-2|i6 means Black ablility draw 10 earth card then compost 2 cards and add 6 soils
          */
 
          //! TODO This.

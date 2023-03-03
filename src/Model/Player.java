@@ -1,16 +1,16 @@
 package Model;
 
+import java.util.Scanner;
 import java.util.Vector;
-
+import java.util.Iterator;
 import Model.Cards.Card;
 
 public class Player {
     String playerName = "John Smith";
-    
+    Tableau m_tableau = new Tableau();
     int soil;
     int gainedSoil = 0;
     int gainedCards = 0;
-
     Card m_islandCard, m_climateCard;
     Vector <Card> hand;
     Vector <Card> compostPile;
@@ -66,21 +66,62 @@ public class Player {
     
     String selectAction()
     {
-        String action = "planting";
-        return action;
+         Scanner scanner = new Scanner(System.in);
+         System.out.println("Enter number from 1 to 4 for each action");
+         int selection = scanner.nextInt();
+        switch (selection) {
+            case 1 -> {
+                return "planting";
+            }
+            case 2 -> {
+                return "composting";
+            }
+            case 3 -> {
+                return "growing";
+            }
+            case 4 -> {
+                return "watering";
+            }
+            default -> System.out.print("Please enter number from 1-4 !!!");
+        }
+        return "";
     }
 
     void activePlanting()
     {
-        // Active Player Action
-        // Plant 2 Cards
-        // Draw 4 Discard 3 (not compost)
 
-        // tableau.plant(Card, Card);
+        Scanner scanner = new Scanner(System.in);
+        // Active Player Action
+        // How to
+        // Plant 2 Cards
+        // Probably print all current Earth Card that is in your hand
+
+        // Chose an Earth card index in your hand to place it onto the tableau
+        Card selected_card = hand.get(scanner.nextInt());
+
+        // Get the position for card planting and plcae it onto your tableau
+        {
+            System.out.print("Enter the position of the card in the tableau: ");
+            int horizontal_pos = scanner.nextInt();
+            int vertical_pos = scanner.nextInt();
+            m_tableau.plant(selected_card,horizontal_pos, vertical_pos);
+        }
+
+
+        // Draw 4 Discard 3 (not compost)
         for (int i = 0; i < 4; i++)
             hand.add(m_game.EarthDeck.dealCard());
 
         discard(3);
+    }
+
+    void active_plating_ability() {
+        for (int i = 0; i < 4; i++) {
+            for(int j = 0; j < 4; j++) {
+                // Missing color field
+                m_tableau.getCardFromTableau(i,j).getM_color();
+            }
+        }
     }
     void discard(int numberToDiscard)
     {
