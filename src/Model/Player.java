@@ -96,11 +96,12 @@ public class Player {
 
         Scanner scanner = new Scanner(System.in);
         // Active Player Action
-        // How to
-        // Plant 2 Cards
+        // Plant up to 2 Cards
+        // Ask for how many card the player want to plant
         // Probably print all current Earth Card that is in your hand
 
         // Chose an Earth card index in your hand to place it onto the tableau
+
         Card selected_card = hand.get(scanner.nextInt());
 
         // Get the position for card planting and place it onto your tableau
