@@ -60,24 +60,16 @@ class Game {
             players.get(i).getHand().add(island);
             // Activate the island immediate ability with black background
             // E.g: island.parseAbility("black");
-            island.parseAbilities(island.getM_abilities()) ;
+            //island.parseAbilities(island.getM_abilities()) ;
             // This should work if parseAbility is complete
             players.get(i).getHand().add(ClimateDeck.dealCard());
-            //players.get(i).getHand().add(EarthDeck.dealCard());
             // players.get(i).getHand().add(EcosystemDeck.dealCard()); // if we ever get here
         }
     }
-    boolean assertPlayerTurn() {
-        boolean takeSameTurn;
-        for (int i = 0; i < m_numberOfPlayers - 1; i++) {
-            if (players.elementAt(i) == players.elementAt(i+1)) {
-                takeSameTurn = true;
-            }
-        }
-        return false;
-    }
+
     void mainTurnLoop()
     {
+        // This is purely for GUI purpose
         int no_of_turn = 0;
         boolean TableauDeckisFilled = false;
         // End game condition
@@ -91,11 +83,11 @@ class Game {
                 }
                 System.out.printf("Now it is player %s turn. \n", currentPlayer.getName());
                 currentPlayer.takeTurn();
-
                 // Can calculate the player point in here
             }
-            no_of_turn = 0;
+            no_of_turn++;
         }
+        // Declare the winner based on their points
     }
 
     Vector<Card> getFuanaCards()
