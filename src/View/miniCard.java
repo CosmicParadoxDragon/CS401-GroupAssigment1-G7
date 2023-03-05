@@ -6,8 +6,8 @@ import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
 
 public class miniCard {
-    static int cardColSize = 17;
-    static int cardRowSize = 7;
+    static int cardColSize = 19;
+    static int cardRowSize = 8;
     Panel outerPanel = new Panel();
     Panel cardPanel = new Panel();
 
@@ -21,7 +21,7 @@ public class miniCard {
 
     public miniCard(Card curCard){
         String name = curCard.getM_name();
-        String habitat = "ur mum";
+        String habitat = "habitat";
         int cost = 69;
 
         cardGen(name, habitat, cost);
@@ -31,7 +31,10 @@ public class miniCard {
         outerPanel.setLayoutManager(new BorderLayout());
         cardPanel.addComponent(new Label(name));
         cardPanel.addComponent(new Label(habitat));
-        cardPanel.addComponent(new Button("  View Card  "));
+        cardPanel.addComponent(new Label(""));
+        cardPanel.addComponent(new Label(""));
+        cardPanel.addComponent(new Label(""));
+        cardPanel.addComponent(new Button("   View Card   "));
         outerPanel.addComponent(cardPanel.withBorder(Borders.singleLine(name)));
         outerPanel.setSize(new TerminalSize(cardColSize, cardRowSize));
     }
