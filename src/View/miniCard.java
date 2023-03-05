@@ -1,6 +1,6 @@
 package View;
 
-
+import Model.Cards.Card;
 import com.googlecode.lanterna.TerminalPosition;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.gui2.*;
@@ -9,14 +9,30 @@ public class miniCard {
     static int cardColSize = 17;
     static int cardRowSize = 7;
     Panel outerPanel = new Panel();
-    Panel Card = new Panel();
+    Panel cardPanel = new Panel();
 
     public miniCard(){
+        String name = "<empty slot>";
+        String habitat = " ";
+        int cost = 0;
+
+        cardGen(name, habitat, cost);
+    }
+
+    public miniCard(Card curCard){
+        String name = curCard.getM_name();
+        String habitat = "ur mum";
+        int cost = 69;
+
+        cardGen(name, habitat, cost);
+    }
+
+    void cardGen(String name, String habitat, int cost){
         outerPanel.setLayoutManager(new BorderLayout());
-        Card.addComponent(new Label("borp"));
-        Card.addComponent(new Label("borp2"));
-        Card.addComponent(new Button("  View Card  "));
-        outerPanel.addComponent(Card.withBorder(Borders.singleLine("Card Name")));
+        cardPanel.addComponent(new Label(name));
+        cardPanel.addComponent(new Label(habitat));
+        cardPanel.addComponent(new Button("  View Card  "));
+        outerPanel.addComponent(cardPanel.withBorder(Borders.singleLine(name)));
         outerPanel.setSize(new TerminalSize(cardColSize, cardRowSize));
     }
 

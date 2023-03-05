@@ -1,6 +1,6 @@
 package Model.Board;
 
-import Model.Card;
+import Model.Cards.Card;
 public class Tableau {
     /**
      * 4x4 representation of the tableau

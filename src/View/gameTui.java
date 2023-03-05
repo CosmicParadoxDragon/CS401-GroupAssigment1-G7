@@ -1,5 +1,7 @@
 package View;
 
+import Model.Cards.Card;
+import Model.Game;
 import com.googlecode.lanterna.TerminalSize;
 import com.googlecode.lanterna.TextColor;
 import com.googlecode.lanterna.graphics.TextGraphics;
@@ -11,10 +13,12 @@ import com.googlecode.lanterna.terminal.Terminal;
 
 import java.io.IOException;
 import java.util.Arrays;
+import java.util.Vector;
 
 import static com.googlecode.lanterna.gui2.Window.Hint.FULL_SCREEN;
 
 public class gameTui {
+
     Terminal terminal;
     Screen screen;
     TextGraphics tGraphics;
@@ -22,12 +26,16 @@ public class gameTui {
     GridLayout gameLayout;
     Panel gameGrid;
     gameWindow mainGameWindow;
+    Game game;
 
     int tColSize = 132;
     int tRowSize = 43;
+    Vector<Card> hand;
 
 
-    gameTui() throws IOException {
+    public gameTui(Game game) throws IOException {
+        this.game = game;
+
         //Initialize TUI layers
         terminal = new DefaultTerminalFactory().setInitialTerminalSize(new TerminalSize(tColSize, tRowSize)).createTerminal();
         //screen size is hardcoded. The more dynamic layout managers make it difficult to ensure that
@@ -43,8 +51,11 @@ public class gameTui {
         gameGrid = new Panel(new AbsoluteLayout());
         //creates a grid that allows elements to be placed at specific locations
 
+        hand = game.getActivePlayer().getHand();
+
         refreshScreen();
         //initial draw
+
     }
 
     private class gameWindow extends BasicWindow{
@@ -77,9 +88,11 @@ public class gameTui {
 
         for (int i = 0; i < rows; i++){
             for( int j = 0; j < cols; j++){
-                curCard = new miniCard();
+                curCard = new miniCard(hand.get(0));
                 curCard.setCardPosition(startCol + (curCard.cardColSize + 1) * j, startRow + (curCard.cardRowSize + 1) * i);
                 gameGrid.addComponent(curCard.getPanel());
+
+                cardIndex++;
             }
         }
 
