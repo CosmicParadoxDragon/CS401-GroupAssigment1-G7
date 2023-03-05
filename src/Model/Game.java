@@ -1,10 +1,10 @@
 package Model;
 
+import Model.Cards.Card;
+
 import java.util.Vector;
 
-import Model.Cards.*;
-
-class Game {
+public class Game {
 
     int m_numberOfPlayers;
     Vector <Card> FuanaCards;
@@ -76,16 +76,16 @@ class Game {
         }
     }
 
-    Vector<Card> getFuanaCards()
+    public Vector<Card> getFuanaCards()
     {
         return FuanaCards;
     }
 
-    Vector<Player> getPlayers()
+    public Vector<Player> getPlayers()
     {
         return players;
     }
-
+    public Player getActivePlayer() {return activePlayer;}
     void planting()
     {
         // Active Player Action
