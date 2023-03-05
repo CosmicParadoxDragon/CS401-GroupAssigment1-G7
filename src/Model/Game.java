@@ -1,136 +1,117 @@
 package Model;
 
 import Model.Cards.Card;
-
 import java.util.Vector;
 
 public class Game {
 
-    int m_numberOfPlayers;
-    Vector <Card> FuanaCards;
-    Vector <Integer> Scores;
-    Vector <Player> players;
-    Deck EarthDeck;
-    Deck IslandDeck;
-    Deck ClimateDeck;
-    Deck FuanaDeck;
-    Deck discardPile;
+  int m_numberOfPlayers;
+  Vector<Card> FuanaCards;
+  Vector<Integer> Scores;
+  Vector<Player> players;
+  Deck EarthDeck;
+  Deck IslandDeck;
+  Deck ClimateDeck;
+  Deck FuanaDeck;
+  Deck discardPile;
 
-    Player activePlayer;
+  Player activePlayer;
 
-    Game(int numberOfPlayers)
-    {   
-        EarthDeck = new Deck();
-        IslandDeck = new Deck();
-        ClimateDeck = new Deck();
-        FuanaDeck = new Deck();
-        discardPile = new Deck();
-        FuanaCards = new Vector<Card>();
-        Scores = new Vector<Integer>();
-        players = new Vector<Player>();
-        m_numberOfPlayers = numberOfPlayers;
-        // Game Setup Phase
-        SetupPhase();
-        
-        activePlayer = players.get(0);
+  Game(int numberOfPlayers) {
+    EarthDeck = new Deck();
+    IslandDeck = new Deck();
+    ClimateDeck = new Deck();
+    FuanaDeck = new Deck();
+    discardPile = new Deck();
+    FuanaCards = new Vector<Card>();
+    Scores = new Vector<Integer>();
+    players = new Vector<Player>();
+    m_numberOfPlayers = numberOfPlayers;
+    // Game Setup Phase
+    SetupPhase();
 
+    activePlayer = players.get(0);
+  }
+
+  //! Assumeing Solo Game
+  private void SetupPhase() {
+    try {
+      EarthDeck.fillEarthDeck();
+      ClimateDeck.fillClimateDeck();
+      FuanaDeck.fillFuanaDeck();
+      IslandDeck.fillIslandDeck();
+    } catch (Exception e) {
+      System.out.println(e.toString());
     }
-    
-    //! Assumeing Solo Game
-    private void SetupPhase()
-    {
-        try{
-            EarthDeck.fillEarthDeck();
-            ClimateDeck.fillClimateDeck();
-            FuanaDeck.fillFuanaDeck();
-            IslandDeck.fillIslandDeck();
-        }
-        catch (Exception e)
-        {
-            System.out.println(e.toString());
-        }
-        for (int i = 0; i < m_numberOfPlayers; i++)
-        {
-            players.add(new Player(this));
-        }
-
-        for (int j = 0; j<4; j++)
-        {
-            FuanaCards.add(FuanaDeck.dealCard());
-        }
-        // 1 Player game is standard expect everything to break
-        for (int i = 0; i < m_numberOfPlayers; i++)
-        {
-            players.get(i).getHand().add(IslandDeck.dealCard());
-            players.get(i).getHand().add(ClimateDeck.dealCard());
-            // players.get(i).getHand().add(EcosystemDeck.dealCard()); // if we ever get here
-        }
+    for (int i = 0; i < m_numberOfPlayers; i++) {
+      players.add(new Player(this));
     }
 
-    void mainTurnLoop()
-    {
-        for (Player currentPlayer : players)
-        {
-            currentPlayer.takeTurn();
-            // currentPlayer.getTableau().checkFull(); // <- Need this for the end of the game
-        }
+    for (int j = 0; j < 4; j++) {
+      FuanaCards.add(FuanaDeck.dealCard());
     }
-
-    public Vector<Card> getFuanaCards()
-    {
-        return FuanaCards;
+    // 1 Player game is standard expect everything to break
+    for (int i = 0; i < m_numberOfPlayers; i++) {
+      players.get(i).getHand().add(IslandDeck.dealCard());
+      players.get(i).getHand().add(ClimateDeck.dealCard());
+      // players.get(i).getHand().add(EcosystemDeck.dealCard()); // if we ever
+      // get here
     }
+  }
 
-    public Vector<Player> getPlayers()
-    {
-        return players;
+  void mainTurnLoop() {
+    for (Player currentPlayer : players) {
+      currentPlayer.takeTurn();
+      // currentPlayer.getTableau().checkFull(); // <- Need this for the end of
+      // the game
     }
-    public Player getActivePlayer() {return activePlayer;}
-    void planting()
-    {
-        // Active Player Action
-        // Plant 2 Cards
-        // Draw 4 Discard 3 (not compost)
-        
-        // Gaia Action
-        // Your Discards move to compost
+  }
 
-        // Trigger Green Abilities
-    }
+  public Vector<Card> getFuanaCards() { return FuanaCards; }
 
-    void compostion()
-    {
-        // Player Action
-        // Gain 5 Soil
-        // Compost 2 Cards from the EarthDeck
+  public Vector<Player> getPlayers() { return players; }
+  public Player getActivePlayer() { return activePlayer; }
+  void planting() {
+    // Active Player Action
+    // Plant 2 Cards
+    // Draw 4 Discard 3 (not compost)
 
-        // Gaia Action
-        // Compost 2 cards, Compost 1 for every 2 soil gained this turn
+    // Gaia Action
+    // Your Discards move to compost
 
-        // Trugger Red and Multicolored Abilities
-    }
+    // Trigger Green Abilities
+  }
 
-    void watering()
-    {
-        //Player Action
-        // Gain 6 sprouts
-        // May gain 2 soul
+  void compostion() {
+    // Player Action
+    // Gain 5 Soil
+    // Compost 2 Cards from the EarthDeck
 
-        // Gaia Action
-        // you gain 1 sprout per red ability you have
+    // Gaia Action
+    // Compost 2 cards, Compost 1 for every 2 soil gained this turn
 
-        // Trigger all blue and multicolored abilities
-    }
-    
-    void growing()
-    {
-        // Player Action
-        // Draw 4 to hand
-        // Place 2 growth
+    // Trugger Red and Multicolored Abilities
+  }
 
-        // Gaia Action
-        // gain 1 growth for each draw this turn
+  void watering() {
+    // Player Action
+    //  Gain 6 sprouts
+    //  May gain 2 soul
 
-        // Trigger Yellow and Multicolored Abilities
-    }
+    // Gaia Action
+    // you gain 1 sprout per red ability you have
+
+    // Trigger all blue and multicolored abilities
+  }
+
+  void growing() {
+    // Player Action
+    // Draw 4 to hand
+    // Place 2 growth
+
+    // Gaia Action
+    // gain 1 growth for each draw this turn
+
+    // Trigger Yellow and Multicolored Abilities
+  }
 }
