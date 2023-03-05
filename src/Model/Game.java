@@ -61,7 +61,12 @@ public class Game {
         // 1 Player game is standard expect everything to break
         for (int i = 0; i < m_numberOfPlayers; i++)
         {
-            players.get(i).getHand().add(IslandDeck.dealCard());
+            Card island = IslandDeck.dealCard();
+            players.get(i).getHand().add(island);
+            // Activate the island immediate ability with black background
+            // E.g: island.parseAbility("black");
+            //island.parseAbilities(island.getM_abilities()) ;
+            // This should work if parseAbility is complete
             players.get(i).getHand().add(ClimateDeck.dealCard());
             // players.get(i).getHand().add(EcosystemDeck.dealCard()); // if we ever get here
         }
@@ -69,11 +74,26 @@ public class Game {
 
     void mainTurnLoop()
     {
-        for (Player currentPlayer : players)
-        {
-            currentPlayer.takeTurn();
-            // currentPlayer.getTableau().checkFull(); // <- Need this for the end of the game
+        // This is purely for GUI purpose
+        int no_of_turn = 0;
+        boolean TableauDeckisFilled = false;
+        // End game condition
+        // If a player tableau is filled and everyone has taken the same no_of_turn
+        // The game is completed
+        while (!TableauDeckisFilled) {
+            for (Player currentPlayer : players) {
+                // Checking if the tableau is filled
+                // This line will use the getTableau function
+                // if (currentPlayer.getTableau().isBoardFilled()) {
+                //    TableauDeckisFilled = true;
+                //}
+                System.out.printf("Now it is player %s turn. \n", currentPlayer.getName());
+                currentPlayer.takeTurn();
+                // Can calculate the player point in here
+            }
+            no_of_turn++;
         }
+        // Declare the winner based on their points
     }
 
     public Vector<Card> getFuanaCards()
