@@ -16,11 +16,12 @@ Game Setup
   
 ### Players
 - Player Board
-  - Leaf Token Track
-    > Leaf tokens track which objective has been scored on. More relevant in multiplayer games, but the order is important because the first player or non-player who scores them achives more points.
+  - ~Leaf Token Track~
+    > ~Leaf tokens track which objective has been scored on. More relevant in multiplayer games, but the order is important because the first player or non-player who scores them achives more points.~
   - Compost Pile
     > Cards that have been discarded here are face down no longer matter.
   - Soil Bank
+    > This an int, as the player board is partailly repersented by the Player class, although it contains other functions for game logic, and is both the player board and the user's repersentation in the game.
     > Cards that cost soil to play need to make a check here that they player can afford to play them
 - Island
     > The Island zone has one island card assigned before turn 1
