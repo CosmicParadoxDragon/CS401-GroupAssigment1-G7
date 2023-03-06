@@ -16,25 +16,33 @@ Game Setup
   
 ### Players
 - Player Board
+  - Player Island/Tableau
+    > This is the 4x4 grid of cards that the player builds up over the course of the game.  Called both the Island and Tableau interchangealbly.    
   - ~Leaf Token Track~
     > ~Leaf tokens track which objective has been scored on. More relevant in multiplayer games, but the order is important because the first player or non-player who scores them achives more points.~
   - Compost Pile
     > Cards that have been discarded here are face down no longer matter.
+  - Hand
+  > This is a vector containing the Cards currently in the hand of the Player.
   - Soil Bank
     > This an int, as the player board is partailly repersented by the Player class, although it contains other functions for game logic, and is both the player board and the user's repersentation in the game.
     > Cards that cost soil to play need to make a check here that they player can afford to play them
-- Island
+- Island Zone
     > The Island zone has one island card assigned before turn 1
-- Cliamte
-    > The this is a card slot for one card assignment made before turn 1
-- Enviroment
+- Cliamte Zone
+    > The this is a card zone for one card assignment made before turn 1
+- Enviroment Zone
     > A wincondition card that maybe implemented.
   
 ### Cards
 - Earth Cards
   - Flora Cards
+    > Animal themed cards played with for the course of the whole game
   - Event Cards
+   > Events that create persistent negative and positive effects for the player 
   - Terrain Cards
+  > Played thoughout the game into the Island
+
 - Fuana Cards
   > These are pre-game cards that determine the victory conditions for the player
 - Island Card
