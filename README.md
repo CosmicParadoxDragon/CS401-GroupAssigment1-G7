@@ -66,7 +66,7 @@ Game Setup
   
 
 ## Members
-Sohrab Kazak
+Sohrab Kazak -> CosmicParadoxDragon
 
 Truong Dinh
 
